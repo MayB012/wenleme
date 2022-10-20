@@ -1,0 +1,131 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : cnt2
+ Source Server Type    : MySQL
+ Source Server Version : 80031
+ Source Host           : localhost:3306
+ Source Schema         : db
+
+ Target Server Type    : MySQL
+ Target Server Version : 80031
+ File Encoding         : 65001
+
+ Date: 20/10/2022 16:15:04
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for 举报
+-- ----------------------------
+DROP TABLE IF EXISTS `举报`;
+CREATE TABLE `举报`  (
+  `UID` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `adID` char(7) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PID` char(18) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  PRIMARY KEY (`UID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = ascii COLLATE = ascii_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of 举报
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 填写问卷明细表
+-- ----------------------------
+DROP TABLE IF EXISTS `填写问卷明细表`;
+CREATE TABLE `填写问卷明细表`  (
+  `PINumber` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问题题号',
+  `UID` char(11) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '填写人ID',
+  `PID` char(18) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问卷ID',
+  `PIType` enum('单选','多选','主观') CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问题类型',
+  `PIAns` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问题答案',
+  PRIMARY KEY (`PINumber`, `UID`, `PID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of 填写问卷明细表
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 已填写问卷表
+-- ----------------------------
+DROP TABLE IF EXISTS `已填写问卷表`;
+CREATE TABLE `已填写问卷表`  (
+  `UID` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PID` char(18) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  PRIMARY KEY (`UID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = ascii COLLATE = ascii_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of 已填写问卷表
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 用户表
+-- ----------------------------
+DROP TABLE IF EXISTS `用户表`;
+CREATE TABLE `用户表`  (
+  `UID` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `UNAME` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `UPNumber` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  PRIMARY KEY (`UID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = ascii COLLATE = ascii_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of 用户表
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 管理员表
+-- ----------------------------
+DROP TABLE IF EXISTS `管理员表`;
+CREATE TABLE `管理员表`  (
+  `AdlD` char(7) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PID(U）` char(18) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PID(P)` char(18) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL
+) ENGINE = InnoDB CHARACTER SET = ascii COLLATE = ascii_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of 管理员表
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 问卷明细表
+-- ----------------------------
+DROP TABLE IF EXISTS `问卷明细表`;
+CREATE TABLE `问卷明细表`  (
+  `PINumber` varchar(999) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问卷题号',
+  `PID` char(18) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问卷ID',
+  `PIType` enum('单选','多选','主观') CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问题类型',
+  `PIQues` varchar(999) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT '问题题干',
+  `PIitem` varchar(999) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NULL DEFAULT NULL COMMENT '选项',
+  PRIMARY KEY (`PINumber`, `PID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of 问卷明细表
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for 问卷表
+-- ----------------------------
+DROP TABLE IF EXISTS `问卷表`;
+CREATE TABLE `问卷表`  (
+  `PID` char(18) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PPwd` varchar(25) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
+  `Ptype` char(8) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
+  `PLTime` char(14) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `UID` char(11) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `PInfo` varchar(255) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
+  `Pstate` char(6) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`PID`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = ascii COLLATE = ascii_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of 问卷表
+-- ----------------------------
+
+SET FOREIGN_KEY_CHECKS = 1;
